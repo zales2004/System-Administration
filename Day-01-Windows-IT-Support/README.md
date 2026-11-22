@@ -1,16 +1,10 @@
-# Day 01 — Windows IT Support & Troubleshooting
+# Windows System Administration — Day 01
 
-> **Track:** IT Support / Junior System Administration  
-> **Platform:** Windows client administration  
-> **Shell used in the lab:** Windows PowerShell 5.1  
-> **Lab evidence:** Two screenshots included in the `evidence/` directory  
-> **Status:** Practical user-management exercise completed
+*Personal study notes · Windows basics, PowerShell and local account administration*
 
----
+## 1. Topics covered
 
-## 1. Learning objectives
-
-By the end of this module, you should be able to:
+These are the main ideas and commands covered in this session:
 
 1. Explain the role of an operating system, kernel, user mode, and kernel mode.
 2. Identify important Windows directories and understand the purpose of NTFS and the Registry.
@@ -612,9 +606,9 @@ Get-WinEvent -FilterHashtable @{
 5. Reboot if required and permitted.
 6. Verify that the issue is resolved.
 
-## 13. Practical lab record
+## 13. Practical work
 
-### Lab 1 — System information
+### 13.1 Checking the computer
 
 Commands used:
 
@@ -629,7 +623,7 @@ Get-ComputerInfo
 
 The screenshot records the working directory, hostname, current identity, and selected Windows system-information fields. The registered-owner email value has been redacted in the repository copy.
 
-### Lab 2 — Local user and group administration
+### 13.2 Creating and managing a local user
 
 Commands used:
 
@@ -642,9 +636,9 @@ Remove-LocalGroupMember -Group "Administrators" -Member "Supportuser"
 Remove-LocalUser -Name "Supportuser"
 ```
 
-**Screenshot record:** The elevated PowerShell user-management screenshot was supplied in the training conversation. The image shows successful creation and group-membership testing; the binary image is not yet committed.
+**Screenshot — local user and Administrators group**
 
-The screenshot shows the account creation succeeded in an elevated PowerShell session, the account appeared in the Administrators group during the demonstration, and the removal commands were executed afterward.
+![PowerShell local user creation, group membership and cleanup commands](evidence/02-local-user-administration.jpg)
 
 ### Lab outcome
 
@@ -662,7 +656,7 @@ Get-LocalUser -Name "Supportuser"
 
 A not-found result confirms that the local account no longer exists.
 
-## 14. Day 01 command reference
+## 14. Commands to keep handy
 
 | Task | Command |
 |---|---|
@@ -699,7 +693,7 @@ A not-found result confirms that the local account no longer exists.
 | Read System events | `Get-WinEvent -LogName System -MaxEvents 20` |
 | Read Security failed logons | `Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625}` |
 
-## 15. Interview revision questions
+## 15. Questions to revise
 
 1. **What is an operating system?**  
    System software that manages hardware and software resources and provides common services for applications and users.
@@ -737,7 +731,7 @@ A not-found result confirms that the local account no longer exists.
 12. **How would you investigate a slow computer?**  
     Inspect CPU, memory, disk, and startup activity; identify the responsible process; check storage and relevant logs; make a targeted change and verify the result.
 
-## 16. Self-assessment checklist
+## 16. Revision checklist
 
 - [ ] Explain kernel, user mode, and kernel mode.
 - [ ] Navigate common Windows directories.
@@ -755,7 +749,7 @@ A not-found result confirms that the local account no longer exists.
 
 ---
 
-## Further reading
+## Microsoft documentation
 
 Use Microsoft's official documentation when validating command syntax and behavior:
 
@@ -765,4 +759,4 @@ Use Microsoft's official documentation when validating command syntax and behavi
 - [Windows Event Viewer](https://learn.microsoft.com/windows/security/operating-system-security/system-security/auditing/)
 - [DISM and SFC repair guidance](https://support.microsoft.com/windows/using-system-file-checker-in-windows-365e0031-36b1-6031-f804-8fd86e0ef4ca)
 
-**Next module:** Day 02 — Linux System Administration.
+
