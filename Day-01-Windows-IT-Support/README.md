@@ -81,8 +81,6 @@ cd C:\Windows\System32
 
 ## 4. Inspecting the computer
 
-The following commands were run in the first screenshot.
-
 ```powershell
 pwd
 hostname
@@ -96,21 +94,6 @@ Get-ComputerInfo
 | `hostname` | Displays the computer's hostname |
 | `whoami` | Displays the current security identity |
 | `Get-ComputerInfo` | Displays detailed operating-system and computer information |
-
-### Lab observation
-
-The screenshot shows:
-
-- The PowerShell working directory was `C:\Users\alenz`.
-- The current identity was displayed in computer-name\\user-name format.
-- `Get-ComputerInfo` returned Windows product, build, installation, BIOS, and other system properties.
-
-**Version interpretation note:** The screenshot's `WindowsProductName` field reports **Windows 10 Home Single Language**. It also displays build and display-version fields. When documenting a machine, report the exact values shown by the system rather than inferring the edition from a single build number. You can verify the edition and version with:
-
-```powershell
-winver
-Get-ComputerInfo | Select-Object WindowsProductName, WindowsVersion, OsDisplayVersion, WindowsBuildLabEx
-```
 
 ## 5. Local users and groups
 
@@ -182,18 +165,16 @@ Remove-LocalUser -Name "Supportuser"
 
 **Important:** The lab account was temporarily added to the Administrators group to demonstrate group membership. It was then removed from that group and deleted. Do not leave test accounts or unnecessary privileged memberships on a real workstation.
 
-### 5.4 Understanding the Access Denied error
+### 5.4 Running administrative commands
 
-The first attempt to run `New-LocalUser` returned **Access denied**. The command was subsequently run in an elevated PowerShell window titled **Administrator: Windows PowerShell**, and the account was created successfully.
-
-An account may belong to the Administrators group while a normal PowerShell window still runs with a filtered, non-elevated token because of User Account Control (UAC).
+Some account-management and system-configuration commands require an elevated PowerShell session.
 
 To open an elevated shell:
 
 1. Search for PowerShell in the Start menu.
 2. Right-click it and choose **Run as administrator**.
 3. Approve the User Account Control prompt.
-4. Re-run the administrative command.
+4. Run the administrative command.
 
 A practical elevation check:
 
@@ -201,10 +182,9 @@ A practical elevation check:
 net session
 ```
 
-If the command returns **Access is denied**, the shell is not elevated or the account lacks the required rights. In an elevated shell, it should run and may report that there are no entries.
+If the command returns **Access is denied**, the shell may not be elevated or the account may lack the required rights.
 
-**Interview point:** Being a member of Administrators and running an elevated process are related but different. UAC requires explicit elevation for many privileged operations.
-
+**Interview point:** Being a member of the Administrators group and running an elevated process are related but different. User Account Control (UAC) requires explicit elevation for many privileged operations.
 ## 6. Processes and Task Manager
 
 A **process** is a running instance of a program. Windows assigns a Process ID (PID) to identify it.
@@ -606,59 +586,7 @@ Get-WinEvent -FilterHashtable @{
 5. Reboot if required and permitted.
 6. Verify that the issue is resolved.
 
-## 13. Practical work
-
-### 13.1 Checking the computer
-
-Commands used:
-
-```powershell
-pwd
-hostname
-whoami
-Get-ComputerInfo
-```
-
-**Screenshot — PowerShell system information**
-
-![PowerShell system information commands and output](evidence/01-system-information.jpg)
-
-*The registered-owner email is hidden in this copy.*
-
-### 13.2 Creating and managing a local user
-
-Commands used:
-
-```powershell
-New-LocalUser -Name "Supportuser" -Password (Read-Host -AsSecureString "Enter Password")
-Get-LocalUser -Name "Supportuser"
-Add-LocalGroupMember -Group "Administrators" -Member "Supportuser"
-Get-LocalGroupMember -Group "Administrators"
-Remove-LocalGroupMember -Group "Administrators" -Member "Supportuser"
-Remove-LocalUser -Name "Supportuser"
-```
-
-**Screenshot — local user and Administrators group**
-
-![PowerShell local user creation, group membership and cleanup commands](evidence/02-local-user-administration.jpg)
-
-### Lab outcome
-
-- The initial non-elevated attempt returned **Access denied**.
-- The command succeeded after opening PowerShell as Administrator.
-- The local test account was created and verified.
-- The test account was added to the local Administrators group and its membership was displayed.
-- The test account was removed from the group and the account deletion command was executed.
-
-The screenshot documents command execution. It does not independently show a final post-deletion query; if you want to verify deletion in a repeat lab, run:
-
-```powershell
-Get-LocalUser -Name "Supportuser"
-```
-
-A not-found result confirms that the local account no longer exists.
-
-## 14. Commands to keep handy
+## 13. Commands to keep handy
 
 | Task | Command |
 |---|---|
@@ -747,7 +675,6 @@ A not-found result confirms that the local account no longer exists.
 - [ ] Explain CHKDSK, SFC, and DISM.
 - [ ] Diagnose a basic DNS or connectivity issue.
 - [ ] Find relevant events in Event Viewer.
-- [ ] Explain the practical lab evidence and its limitations.
 
 ---
 
