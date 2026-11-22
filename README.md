@@ -27,7 +27,7 @@ The Day 01 module includes:
 - PowerShell administration and filtering
 - Event Viewer and important Windows event IDs
 - Practical labs, troubleshooting workflow, and interview revision
-- Redacted screenshots from the completed PowerShell exercises
+- Practical screenshot evidence is documented in the Day 01 lab record; binary image files are pending upload.
 
 ## Lab safety
 
