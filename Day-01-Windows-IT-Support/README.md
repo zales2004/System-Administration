@@ -619,9 +619,11 @@ whoami
 Get-ComputerInfo
 ```
 
-**Screenshot record:** The system-information screenshot was supplied in the training conversation. Its registered-owner email was redacted in the prepared repository copy; the binary image is not yet committed.
+**Screenshot — PowerShell system information**
 
-The screenshot records the working directory, hostname, current identity, and selected Windows system-information fields. The registered-owner email value has been redacted in the repository copy.
+![PowerShell system information commands and output](evidence/01-system-information.jpg)
+
+*The registered-owner email is hidden in this copy.*
 
 ### 13.2 Creating and managing a local user
 
