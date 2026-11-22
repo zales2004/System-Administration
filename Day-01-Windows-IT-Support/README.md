@@ -625,7 +625,7 @@ whoami
 Get-ComputerInfo
 ```
 
-**Evidence:** `evidence/01-system-information.png`
+**Screenshot record:** The system-information screenshot was supplied in the training conversation. Its registered-owner email was redacted in the prepared repository copy; the binary image is not yet committed.
 
 The screenshot records the working directory, hostname, current identity, and selected Windows system-information fields. The registered-owner email value has been redacted in the repository copy.
 
@@ -642,7 +642,7 @@ Remove-LocalGroupMember -Group "Administrators" -Member "Supportuser"
 Remove-LocalUser -Name "Supportuser"
 ```
 
-**Evidence:** `evidence/02-local-user-and-group-lab.png`
+**Screenshot record:** The elevated PowerShell user-management screenshot was supplied in the training conversation. The image shows successful creation and group-membership testing; the binary image is not yet committed.
 
 The screenshot shows the account creation succeeded in an elevated PowerShell session, the account appeared in the Administrators group during the demonstration, and the removal commands were executed afterward.
 
